@@ -6,13 +6,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 @Composable
-fun Navigation(navController: NavHostController){
+fun Navigation(navController: NavHostController,viewModel: HomeScreenViewModel){
     NavHost(navController=navController, startDestination = NavigationRoute.HomeScreen.route){
         composable(NavigationRoute.HomeScreen.route){
-            Home(navController)
+            Home(navController,viewModel)
         }
         composable(NavigationRoute.SearchScreen.route) {
             SearchScreen(navController)
+        }
+        composable(NavigationRoute.CategoryScreen.route) {
+            CategoryScreen(navController)
         }
     }
 

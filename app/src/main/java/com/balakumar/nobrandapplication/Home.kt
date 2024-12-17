@@ -20,7 +20,7 @@ import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Home(navcontroller: NavHostController){
+fun Home(navcontroller: NavHostController,viewModel: HomeScreenViewModel){
     Scaffold (
         modifier = Modifier.fillMaxWidth(),
 
@@ -58,7 +58,7 @@ fun Home(navcontroller: NavHostController){
             )
         }
     ){ innerPadding->
-        HomeScreen(navcontroller,innerPadding = innerPadding)
+        HomeScreen(navcontroller,innerPadding = innerPadding, viewModel = viewModel)
 
     }
 }

@@ -42,7 +42,7 @@ fun SearchScreen(navcontroller: NavHostController, modifier:Modifier=Modifier){
             TopAppBar(
                 modifier= modifier.shadow(2.dp).padding(2.dp),
                navigationIcon = {
-                   IconButton(onClick = {navcontroller.navigate(NavigationRoute.HomeScreen.route)}) {
+                   IconButton(onClick = {navcontroller.popBackStack()}) {
                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "return")
                    }
                },
