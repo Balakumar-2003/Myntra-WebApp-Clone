@@ -73,7 +73,3 @@ fun Home(navcontroller: NavHostController,viewModel: HomeScreenViewModel){
 
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewHome()
