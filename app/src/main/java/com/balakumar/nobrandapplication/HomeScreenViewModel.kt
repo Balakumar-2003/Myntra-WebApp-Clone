@@ -2,11 +2,24 @@ package com.balakumar.nobrandapplication
 
 import androidx.compose.foundation.shape.GenericShape
 import androidx.lifecycle.ViewModel
+import com.balakumar.nobrandapplication.data.BottomNav
 import com.balakumar.nobrandapplication.data.CategoryPoster
 import com.balakumar.nobrandapplication.data.Repository
 
 class HomeScreenViewModel(repository: Repository) :ViewModel(){
     private val categoryList =repository.getCategoryList()
+
+    private val bottomNavList = repository.getBottomNavList()
+
+    private val bottomNavSelectedList = repository.getBottomNavSelectedList()
+
+    fun getBottomNavList():List<BottomNav>{
+        return bottomNavList
+    }
+
+    fun getBottomNavSelectedList():List<BottomNav>{
+        return bottomNavSelectedList
+    }
 
     fun getCategoryList():List<CategoryPoster>{
         return categoryList

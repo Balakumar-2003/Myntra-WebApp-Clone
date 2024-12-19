@@ -1,11 +1,13 @@
 package com.balakumar.nobrandapplication
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -35,14 +37,14 @@ import com.balakumar.nobrandapplication.ui.theme.NoBrandApplicationTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchScreen(navcontroller: NavHostController, modifier:Modifier=Modifier){
+fun SearchScreen(navcontroller: NavHostController,innerPadding:PaddingValues, modifier:Modifier=Modifier){
     var searchItem by remember{ mutableStateOf("") }
-    Scaffold (modifier = modifier.fillMaxWidth(),
+    Scaffold (modifier = modifier.fillMaxWidth().padding(innerPadding,),
         topBar = {
             TopAppBar(
-                modifier= modifier.shadow(2.dp).padding(2.dp),
+                modifier= modifier.padding(2.dp).height(36.dp),
                navigationIcon = {
-                   IconButton(onClick = {navcontroller.popBackStack()}) {
+                   IconButton(onClick = {navcontroller.popBackStack()}, modifier = Modifier.size(36.dp)) {
                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "return")
                    }
                },
@@ -67,6 +69,6 @@ fun SearchScreen(navcontroller: NavHostController, modifier:Modifier=Modifier){
 @Composable
 fun PreviewSearchScreen(){
     NoBrandApplicationTheme {
-        SearchScreen(rememberNavController())
+        SearchScreen(rememberNavController(),PaddingValues(1.dp))
     }
 }

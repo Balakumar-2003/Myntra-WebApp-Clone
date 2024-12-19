@@ -39,6 +39,44 @@ class Repository {
             image = R.drawable.beauty,
             category = R.string.beauty),
     )
+    private val BottomNavSlectedList = mutableListOf(
+        BottomNav(
+            image = R.drawable.myntrabuttonclicked,
+            string = R.string.Nav_Home),
+        BottomNav(
+            image = R.drawable.fwdbuttonclicked,
+            string = R.string.Nav_fwd),
+        BottomNav(
+            image = R.drawable.beautybuttonclicked,
+            string = R.string.Nav_beauty),
+        BottomNav(
+            image = R.drawable.profilebutton,
+            string = R.string.Nav_profile),
+    )
+    private val BottomNavList = mutableListOf(
+        BottomNav(
+            image = R.drawable.myntrabutton,
+            string = R.string.Nav_Home),
+
+        BottomNav(
+            image = R.drawable.fwdbutton,
+            string = R.string.Nav_fwd),
+
+        BottomNav(
+            image = R.drawable.beautybutton,
+            string = R.string.Nav_beauty),
+
+        BottomNav(
+            image = R.drawable.profilebutton,
+            string = R.string.Nav_profile),
+    )
+
+    fun getBottomNavList():List<BottomNav>{
+        return BottomNavList
+    }
+    fun getBottomNavSelectedList():List<BottomNav>{
+        return BottomNavSlectedList
+    }
 
     fun getCategoryList():List<CategoryPoster>{
         return categoryList

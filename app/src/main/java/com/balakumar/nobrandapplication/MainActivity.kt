@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
             val viewmodel =ViewModelProvider(this,viewModelProvider).get(HomeScreenViewModel::class.java)
             navcontroller= rememberNavController()
             NoBrandApplicationTheme {
-                Navigation(navcontroller,viewmodel)
+                Home(navcontroller,viewmodel)
             }
         }
     }

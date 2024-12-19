@@ -1,5 +1,6 @@
 package com.balakumar.nobrandapplication
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -40,6 +41,7 @@ import com.balakumar.nobrandapplication.ui.theme.NoBrandApplicationTheme
 import kotlinx.coroutines.delay
 
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun HomeScreen(navcontroller: NavHostController, modifier: Modifier=Modifier, innerPadding:PaddingValues,viewModel: HomeScreenViewModel){
         var searchText by remember{

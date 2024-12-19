@@ -12,7 +12,10 @@
     <string name="fitness">FITNESS</string>
     <string name="watch">WATCH</string>
     <string name="jewellery">JEWELLERY</string>
-
+    <string name="Nav_Home">Home</string>
+    <string name="Nav_fwd">fwd</string>
+    <string name="Nav_beauty">Beauty</string>
+    <string name="Nav_profile">Profile</string>
 
 
 
