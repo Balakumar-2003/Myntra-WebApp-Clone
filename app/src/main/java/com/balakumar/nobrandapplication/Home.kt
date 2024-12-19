@@ -2,12 +2,14 @@ package com.balakumar.nobrandapplication
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -15,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
@@ -26,7 +29,9 @@ fun Home(navcontroller: NavHostController,viewModel: HomeScreenViewModel){
 
         topBar = {
             TopAppBar(
-                modifier = Modifier.shadow(2.dp).padding(2.dp),
+                modifier = Modifier
+                    .shadow(2.dp)
+                    .padding(2.dp),
                 navigationIcon = {
                     IconButton(onClick = {}){
                         Icon(painter = painterResource(R.drawable.baseline_density_medium_24),
@@ -56,9 +61,19 @@ fun Home(navcontroller: NavHostController,viewModel: HomeScreenViewModel){
                     }
                 }
             )
+        },
+
+        bottomBar = {
+            NavigationBar (modifier=Modifier.height(100.dp).shadow(8.dp).padding(2.dp)){
+
+            }
         }
     ){ innerPadding->
         HomeScreen(navcontroller,innerPadding = innerPadding, viewModel = viewModel)
 
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewHome()
