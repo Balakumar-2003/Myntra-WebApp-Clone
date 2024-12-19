@@ -82,7 +82,7 @@ fun Home(navcontroller: NavHostController,viewModel: HomeScreenViewModel){
         bottomBar = {
 
             NavigationBar (modifier = Modifier
-                .height(82.dp)
+                .height(108.dp)
                 .padding(top = 2.dp)
                 .shadow(8.dp),
                 containerColor = Color(0xFFFFFFFF)

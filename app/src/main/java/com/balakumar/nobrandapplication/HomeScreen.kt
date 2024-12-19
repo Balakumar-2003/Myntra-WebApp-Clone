@@ -1,6 +1,7 @@
 package com.balakumar.nobrandapplication
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,6 +16,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -27,7 +31,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -38,7 +46,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.balakumar.nobrandapplication.ui.theme.NoBrandApplicationTheme
+import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.delay
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.HorizontalPagerIndicator
 
 
 @SuppressLint("SuspiciousIndentation")
@@ -47,6 +58,8 @@ fun HomeScreen(navcontroller: NavHostController, modifier: Modifier=Modifier, in
         var searchText by remember{
             mutableStateOf("")
         }
+    val banner = viewModel.getBannerList()
+    val pageState = rememberPagerState()
     val text = stringResource(R.string.search)
         LaunchedEffect(key1 = true){
             while (true){
@@ -105,6 +118,40 @@ fun HomeScreen(navcontroller: NavHostController, modifier: Modifier=Modifier, in
                     CategoryPoster(items, viewModel = viewModel,navcontroller)
                 }
             }
+            Spacer(modifier = Modifier.height(2.dp))
+           HorizontalPager(
+                count = banner.size,
+                state = pageState,
+
+                modifier = Modifier.fillMaxWidth()
+                    .height(250.dp) ,
+
+            ){page->
+               Image(painter = painterResource(id=banner[page].image),
+                   contentDescription = "Image $page",
+                   modifier = Modifier.fillMaxSize().clickable(onClick = {}), contentScale = ContentScale.FillBounds)
+
+           }
+            Spacer(modifier = Modifier.height(2.dp))
+            HorizontalPagerIndicator(
+
+                pagerState = pageState,
+                modifier = Modifier.padding(8.dp),
+                activeColor = Color.Blue,
+                inactiveColor = Color.Gray,
+                indicatorHeight = 8.dp,
+                indicatorWidth = 8.dp,
+                indicatorShape = CircleShape
+            )
+            LaunchedEffect(pageState) {
+                while (true) {
+                    delay(3000)
+                    val nextPage = (pageState.currentPage + 1) % banner.size
+                    pageState.animateScrollToPage(nextPage)
+                }
+            }
+
+
         }
 }
 

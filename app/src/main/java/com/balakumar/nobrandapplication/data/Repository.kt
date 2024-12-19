@@ -70,12 +70,28 @@ class Repository {
             image = R.drawable.profilebutton,
             string = R.string.Nav_profile),
     )
+    private val BannerList = mutableListOf(
+        Banner(R.drawable.banner1),
+        Banner(R.drawable.banner2),
+        Banner(R.drawable.banner3i),
+        Banner(R.drawable.banner4),
+        Banner(R.drawable.banner5),
+        Banner(R.drawable.banner6),
+        Banner(R.drawable.banner7),
+        Banner(R.drawable.banner8),
+        Banner(R.drawable.banner9),
+        Banner(R.drawable.banner10)
+    )
 
     fun getBottomNavList():List<BottomNav>{
         return BottomNavList
     }
     fun getBottomNavSelectedList():List<BottomNav>{
         return BottomNavSlectedList
+    }
+
+    fun getBannerList():List<Banner>{
+        return BannerList
     }
 
     fun getCategoryList():List<CategoryPoster>{
