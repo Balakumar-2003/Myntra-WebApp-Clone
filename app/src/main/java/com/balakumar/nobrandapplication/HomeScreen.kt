@@ -19,6 +19,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,11 +37,33 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.balakumar.nobrandapplication.ui.theme.NoBrandApplicationTheme
-
+import kotlinx.coroutines.delay
 
 
 @Composable
 fun HomeScreen(navcontroller: NavHostController, modifier: Modifier=Modifier, innerPadding:PaddingValues,viewModel: HomeScreenViewModel){
+        var searchText by remember{
+            mutableStateOf("")
+        }
+    val text = stringResource(R.string.search)
+        LaunchedEffect(key1 = true){
+            while (true){
+                if(searchText=="") {
+                    delay(500)
+                    for (i in 0..text.length - 1) {
+                        delay(100)
+                        searchText = searchText + text[i]
+                    }
+                    delay(1000)
+                }
+                else{
+                    searchText=""
+
+                }
+
+            }
+
+        }
         Column (modifier = modifier.fillMaxSize().padding(innerPadding),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top){
@@ -60,7 +87,7 @@ fun HomeScreen(navcontroller: NavHostController, modifier: Modifier=Modifier, in
                             contentDescription = "search",
                             tint = Color.Gray)
 
-                        Text(text = stringResource(R.string.search),
+                        Text(text = searchText,
                             modifier = Modifier.padding(top = 8.dp,
                                 bottom = 8.dp,
                                 end = 8.dp),
@@ -69,17 +96,11 @@ fun HomeScreen(navcontroller: NavHostController, modifier: Modifier=Modifier, in
                             color = Color.Gray)
 
                     }
-
-
-
                 }
-
-
             }
             LazyRow (modifier = Modifier.padding(start = 8.dp , top = 4.dp, end = 4.dp, bottom = 4.dp)){
                 items(viewModel.getCategoryList()){items->
                     CategoryPoster(items, viewModel = viewModel,navcontroller)
-
                 }
             }
         }
