@@ -22,7 +22,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,6 +34,7 @@ import com.balakumar.nobrandapplication.ui.theme.NoBrandApplicationTheme
 
 @Composable
 fun CategoryPoster(
+    index:Int,
     Category:CategoryPoster,
     viewModel: HomeScreenViewModel,
     navController: NavController
@@ -44,7 +44,7 @@ fun CategoryPoster(
         .height(100.dp)
         .width(80.dp)
         .padding(4.dp)
-        .clickable(onClick = {navController.navigate(NavigationRoute.CategoryScreen.route)})
+        .clickable(onClick = {navController.navigate("CategoryScreen/$index")})
     ){
         Box(modifier = Modifier
             .fillMaxSize()
@@ -80,12 +80,9 @@ fun CategoryPoster(
 fun PreviewCategoryPoster(){
     NoBrandApplicationTheme {
         Surface (modifier = Modifier.fillMaxSize()){
-            CategoryPoster(Category = CategoryPoster(R.drawable.women, R.string.women), viewModel = viewModel<HomeScreenViewModel>(),
+            CategoryPoster(index = 0, Category = CategoryPoster(R.drawable.women, R.string.women), viewModel = viewModel<HomeScreenViewModel>(),
                 rememberNavController()
             )
         }
-
-
     }
-
 }

@@ -16,6 +16,7 @@ class HomeScreenViewModel(repository: Repository) :ViewModel(){
 
     private val bannerList = repository.getBannerList()
 
+
     fun getBannerList():List<Banner>{
         return bannerList
     }

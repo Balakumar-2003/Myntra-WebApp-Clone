@@ -1,12 +1,6 @@
 package com.balakumar.nobrandapplication
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,8 +11,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -26,20 +18,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Home(navcontroller: NavHostController,viewModel: HomeScreenViewModel){
-
+    var currentScreen by remember {
+        mutableStateOf(true)
+    }
+    navcontroller.addOnDestinationChangedListener{listener,
+        destination,argument->
+        currentScreen=(destination.route != NavigationRoute.HomeScreen.route && destination.route != NavigationRoute.SearchScreen.route)
+    }
 
     Scaffold (
         modifier = Modifier.fillMaxWidth(),
@@ -58,13 +53,20 @@ fun Home(navcontroller: NavHostController,viewModel: HomeScreenViewModel){
                 title ={ Image(painter = painterResource(R.drawable.myntra2),
                     modifier = Modifier.size(56.dp),
                     contentDescription = "Myntra_Logo") },
-                colors = TopAppBarDefaults.topAppBarColors(
+                    colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background),
                 actions = {
                     IconButton(onClick = {}){
                         Icon(painter = painterResource(R.drawable.baseline_add_comment_24),
                             modifier = Modifier.size(24.dp),
                             contentDescription = "add")
+                    }
+                    if(currentScreen){
+                        IconButton(onClick = {}){
+                            Icon(painter = painterResource(R.drawable.sharp_search_24),
+                                modifier = Modifier.size(24.dp),
+                                contentDescription = "search")
+                        }
                     }
                     IconButton(onClick = {}){
                     Icon(painter = painterResource(R.drawable.heart),
@@ -80,7 +82,6 @@ fun Home(navcontroller: NavHostController,viewModel: HomeScreenViewModel){
             )
         },
         bottomBar = {
-
             NavigationBar (modifier = Modifier
                 .height(108.dp)
                 .padding(top = 2.dp)
@@ -95,14 +96,3 @@ fun Home(navcontroller: NavHostController,viewModel: HomeScreenViewModel){
 
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun PreviewHome(){
-//     val repository = Repository()
-//    val viewModelProvider= HomeScreenViewModelProvider(repository = repository)
-//    NoBrandApplicationTheme {
-//        val viewmodel = ViewModelProvider(,viewModelProvider).get(HomeScreenViewModel::class.java)
-//        Home(navcontroller = rememberNavController(), viewModel = viewmodel)
-//    }
-//}

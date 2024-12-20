@@ -1,23 +1,18 @@
 package com.balakumar.nobrandapplication
 
-import android.graphics.Paint.Align
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.foundation.BorderStroke
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -43,12 +38,10 @@ fun BottomNavBar(viewModel: HomeScreenViewModel){
         mutableStateOf(0)
     }
 
-
-
     Row(modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.Top){
-  list.forEachIndexed { Index, bottomNav ->
+    list.forEachIndexed { Index, bottomNav ->
       val image by remember {
           derivedStateOf {
               if (selectedIndex == Index) {
@@ -105,7 +98,6 @@ fun BottomNavBar(viewModel: HomeScreenViewModel){
                   )
               }
           }
-
-  }
+   }
   }
 }
